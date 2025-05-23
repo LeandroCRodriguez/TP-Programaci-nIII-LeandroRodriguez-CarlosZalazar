@@ -1,0 +1,79 @@
+/* Reset básico */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+/* Layout general */
+#body-layout {
+    display: grid;
+    grid-template-rows: .3fr 1fr .2fr;
+    height: 100vh;
+}
+
+/* Header */
+#header {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#logo {
+    font-weight: bold;
+    color: red;
+    border: 1px solid red;
+    padding: 5px 15px;
+    border-radius: 50%;
+}
+
+/* Main */
+#main {
+    background-color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.bienvenido {
+    color: red;
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    width: 200px;
+    margin-bottom: 5px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Mensaje de error */
+.mensaje-error {
+    color: gray;
+    margin-top: 20px;
+}
+
+/* Footer */
+#footer {
+    background-color: #f4f4f4;
+    border-top: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: gray;
+}
