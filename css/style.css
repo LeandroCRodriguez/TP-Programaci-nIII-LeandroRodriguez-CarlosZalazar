@@ -15,18 +15,35 @@ html, body {
 
 /* Header */
 #header {
-    background-color: #0c2252; 
-    border-bottom: none; /* opcional, si no querés la línea */
+    background-color: #0c2252;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding: 0 20px;
+}
+
+/* Logo fijo a la izquierda */
+#logo-empresa-products {
+    height: 200px;
+    object-fit: contain;
+    position: absolute;
+    left: 20px;
+}
+
+/* Texto centrado */
+.h1-nombre-products {
+    color: white;
+    font-size: 4em;
+    text-align: center;
+    margin: 0;
 }
 
 #logo-empresa {
     height: 200px;
     object-fit: contain;
 }
+
 
 
 /* Main */
@@ -88,10 +105,20 @@ label {
 }
 
 
-/* Responsivo para pantallas menores a 500px */
+/* Responsivo para pantallas menores a 700px */
 @media (max-width: 700px) {
     .bienvenido {
-        font-size: 3em; /* Se reduce a la mitad en pantallas pequeñas */
+        font-size: 3em; 
+    }
+
+    #logo-empresa-products {
+        position: static;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+    .h1-nombre-products {
+        font-size: 2em;
     }
 
 }
