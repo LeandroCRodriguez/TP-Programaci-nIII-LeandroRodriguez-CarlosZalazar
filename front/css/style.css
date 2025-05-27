@@ -77,6 +77,30 @@ label {
     margin-top: 5px;
 }
 
+#products-container{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;    
+    align-items: center;
+    margin-top: 50px;
+}
+.btnProductos {
+    background-color: #0c2252;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 3em;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 500px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btnProductos:hover {
+    background-color: #0a1a3c;
+}
+
 #btn-nombre{
     background-color: red;
     color: white;
@@ -121,4 +145,19 @@ label {
         font-size: 2em;
     }
 
+
+    
+
+}
+
+@media (max-width: 1000px) {
+    #products-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btnProductos {
+        width: 90%; /* O ajustalo a lo que prefieras en móviles */
+        margin-bottom: 20px;
+    }
 }
