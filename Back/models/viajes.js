@@ -30,4 +30,5 @@ const Viaje = sequelize.define("viajes", {
     }
 });             
 
+
 module.exports = Viaje; //Exportamos el modelo
