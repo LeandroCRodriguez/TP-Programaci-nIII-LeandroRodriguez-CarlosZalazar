@@ -9,11 +9,4 @@ export class Usuario{
         return this.nombre;
     }
 
-    getEdad(){
-        return this.edad;
-    }
-
-    getEmail(){
-        return this.email;
-    }
 }

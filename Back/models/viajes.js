@@ -28,7 +28,11 @@ const Viaje = sequelize.define("viajes", {
         type: DataTypes.FLOAT,
         allowNull: false,
     }
-});             
+}, {
+    timestamps: false // Evita la creación de las columnas createdAt y updatedAt
+});
+console.log("Modelo Viaje creado correctamente");
 
-
+// Viaje.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
+console.log("Tabla Viaje sincronizada correctamente");
 module.exports = Viaje; //Exportamos el modelo

@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const sequelize = require('./db/sequelize'); // Importo la conexión a la base de datos
 process.loadEnvFile();
+const sequelize = require('./db/sequelize'); // Importo la conexión a la base de datos
 
 
 //Traigo los Enrutadores
@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 //Utilizo los enrutadores
 app.use('/viajes', viajeRouter);
 app.use('/experiencias', experienciaRouter);
+
+const viejes = require('./models/viajes');
 
 
 // sequelize.sync({ force: true }) // <- solo durante el desarrollo

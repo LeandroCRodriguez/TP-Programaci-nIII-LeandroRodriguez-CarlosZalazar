@@ -117,9 +117,12 @@ label {
 }
 /* Mensaje de error */
 .mensaje-error {
-    color: gray;
-    margin-top: 20px;
+    margin-top: 1em;
+    font-weight: bold;
+    color: red;
+    height: 1.5em; /* espacio reservado aunque esté vacío */
 }
+
 
 /* Footer */
 #footer {
@@ -157,7 +160,7 @@ label {
     }
     
     .btnProductos {
-        width: 90%; /* O ajustalo a lo que prefieras en móviles */
+        width: 90%; 
         margin-bottom: 20px;
     }
 }
