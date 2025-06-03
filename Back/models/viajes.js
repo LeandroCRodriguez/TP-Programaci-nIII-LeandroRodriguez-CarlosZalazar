@@ -35,4 +35,5 @@ console.log("Modelo Viaje creado correctamente");
 
 // Viaje.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
 console.log("Tabla Viaje sincronizada correctamente");
+
 module.exports = Viaje; //Exportamos el modelo

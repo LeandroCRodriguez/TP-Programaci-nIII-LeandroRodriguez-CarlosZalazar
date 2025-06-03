@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ViajeController = require('../controllers/viajes.controller'); // Me traigo el controlador de viajes
+
 // Defino las rutas y los métodos del controlador
 
 router.get('/', ViajeController.traerTodos); // Trae todos los viajes

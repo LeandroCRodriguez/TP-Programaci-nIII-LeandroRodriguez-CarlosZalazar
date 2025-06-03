@@ -43,4 +43,13 @@ Clase producto/Experiencias
 
 Validé el campo de ingreso del nombre y lanza mensaje de error.
 
+--------------------------------------------------
 
+1) - ARCHIVO SEQUELIZE, codigo de la conexion a nuestra base.
+2) - ARCHIVO EN MODELS, definimos el modelo de la tabla o formato.
+3) - ARCHIVO CONTROLLERS, definimos las acciones del get, post, put y delete.
+4) - ARCHIVO ROUTES, definimos la ruta hacia el controlador
+
+LEAN, NO OLVIDES INSTALAR EL npm install body-parse.
+
+Ahí le metí mano al crud y va como piña.

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+console.log('Cargando rutas de experiencias...');
 router.get('/',  (req, res) => 
     {
         res.send('GET experiencias')

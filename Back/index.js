@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 process.loadEnvFile();
 const sequelize = require('./db/sequelize'); // Importo la conexión a la base de datos
 
+// Importo los modelos
+    const viajes = require('./models/viajes');
 
 //Traigo los Enrutadores
 const viajeRouter = require('./routes/viajes.routes');
@@ -15,20 +17,6 @@ app.use(bodyParser.json());
 //Utilizo los enrutadores
 app.use('/viajes', viajeRouter);
 app.use('/experiencias', experienciaRouter);
-
-const viejes = require('./models/viajes');
-
-
-// sequelize.sync({ force: true }) // <- solo durante el desarrollo
-//     .then(() => {
-//         console.log('Base de datos sincronizada');
-//         app.listen(3000, () => {
-//             console.log('Servidor escuchando en el puerto 3000');
-//         });
-//     })
-//     .catch((err) => {
-//         console.error('Error al sincronizar la base de datos:', err);
-//     });
 
 
     
