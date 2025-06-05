@@ -1,6 +1,7 @@
 import { Usuario } from "./js/usuario.js";
 import { validateString } from './js/utils.js';
 
+// logica del ingreso del nombre de usuario
 document.getElementById("form-nombre").addEventListener("submit", function (e) {
     e.preventDefault();
     const nombre = document.getElementById("nombre").value.trim();
