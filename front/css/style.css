@@ -164,3 +164,27 @@ label {
         margin-bottom: 20px;
     }
 }
+
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInCard 0.8s ease-out forwards;
+  }
+  
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* para que aparezca la manito */
+  }
+  
+  .card:hover {
+    transform: translateY(-10px); /* se levanta 10px hacia arriba */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* sombra más pronunciada */
+  }
+  
+
+
+  @keyframes fadeInCard {
+    to {
+      opacity: 1;
+    }
+  }

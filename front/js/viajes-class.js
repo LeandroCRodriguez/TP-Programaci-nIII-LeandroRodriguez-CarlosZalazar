@@ -8,16 +8,24 @@ export class Viajes {
     }
 
     createElementHtml() {
-        const viajeElement = document.createElement("div");
-        viajeElement.className = "viaje";
-        viajeElement.innerHTML = `
-            <h3>Origen: ${this.origen}</h3>
-            <p>Destino: ${this.destino}</p>
-            <p>Fecha de Salida: ${this.fechaSalida.toLocaleDateString()}</p>
-            <p>Fecha de Llegada: ${this.fechaLlegada.toLocaleDateString()}</p>
-            <p>Precio: $${this.precio.toFixed(2)}</p>
+        const card = document.createElement("div");
+
+        card.className = "col-12 col-sm-6 col-md-3 mt-5";
+    
+        card.innerHTML = `
+            <div class="card h-100">
+                <img src="img/perrito.jpeg" class="card-img-top" alt="imagen de viaje">
+                <div class="card-header">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title text-center">${this.origen}</h5>
+                    <p class="card-text text-center">${this.destino}</p>
+                    <a href="#" class="btn btn-primary mt-auto">¡Lo quqiero!</a>                    
+                </div>
+            </div>
         `;
-        return viajeElement;
-        
+    
+        return card;
     }
+    
+    
 }

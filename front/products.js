@@ -24,6 +24,9 @@ btnViajes.addEventListener("click", () => {
 
 // Función para cargar los viajes desde la API y renderizarlos
 async function cargarViajes() {
+
+    const Title = document.getElementById("title-container");
+    Title.textContent = "Viajes disponibles";
     try {
         const response = await fetch("http://localhost:3000/viajes");
 
@@ -32,12 +35,11 @@ async function cargarViajes() {
         }
 
         const viajesAPI = await response.json();
-        const viajesContainer = document.getElementById("products-container");
 
-        // Limpiar contenedor
-        viajesContainer.innerHTML = "";
+        const viajesRow = document.getElementById("products-row");
+        viajesRow.innerHTML = ""; // Limpiar contenedor
 
-        // Renderizar cada viaje
+        // Renderizar cada viaje como tarjeta
         viajesAPI.forEach((viaje) => {
             const viajeObj = new Viajes(
                 viaje.origen,
@@ -49,7 +51,7 @@ async function cargarViajes() {
             console.log(viajeObj);
 
             const viajeElement = viajeObj.createElementHtml();
-            viajesContainer.appendChild(viajeElement);
+            viajesRow.appendChild(viajeElement);
         });
 
         console.log("Viajes cargados correctamente");
