@@ -9,6 +9,7 @@ const cors = require('cors');
 app.use(cors());
 
 
+
 // Importo los modelos
     const viajes = require('./models/viajes');
     const experiencias = require('./models/experiencias');

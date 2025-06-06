@@ -3,7 +3,7 @@ const experiencia = require('../models/experiencias.js'); //Importamos el modelo
 class ExperienciaController 
 {
     static async traerTodos(req, res) {
-        const experiencias = await experiencia.findAll(); 
+        const experiencias = await experiencia.findAll();  
         res.send(experiencias); 
     }
 

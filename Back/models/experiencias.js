@@ -36,7 +36,7 @@ const Experiencia = sequelize.define("experiencias", {
 
 console.log("Modelo Viaje creado correctamente");
 
-// Viaje.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
+Experiencia.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
 console.log("Tabla Experiencia sincronizada correctamente");
 
 module.exports = Experiencia; //Exportamos el modelo

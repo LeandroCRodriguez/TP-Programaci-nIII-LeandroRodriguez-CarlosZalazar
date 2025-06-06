@@ -1,4 +1,6 @@
+require('dotenv').config(); //ES necesaria esta linea?
 const {Sequelize} = require('sequelize'); //Clase sequelize
+
 
 const sequelize = new Sequelize("Viajes_y_Experiencias",
     process.env.SQL_USER, 
