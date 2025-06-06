@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Administrador</title>
+</head>
+<body>
+    <h1>Login de Administrador</h1>
+    <p>Integrantes: Leandro Rodríguez y Carlos Zalazar</p>
+
+    <form method="post" action="/admin/login">
+        <label>Correo:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Ingresar</button>
+        <button type="button" onclick="autocompletar()">Autocompletar</button>
+    </form>
+
+    <script>
+        function autocompletar() {
+            document.getElementById('email').value = 'admin@admin.com';
+            document.getElementById('password').value = '1234';
+        }
+    </script>
+</body>
+</html>

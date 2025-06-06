@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear experiencia</title>
+</head>
+<body>
+    <form>
+        <input id="experiencia" name ="experiencia" />
+        <input id="fecha" name ="fecha" />
+        <input id="calificacion" name ="calificacion" />
+        <input id="comentario" name ="comentario" />
+        <input id="precio" name ="precio" />
+    </form>
+    <button id="crear">Crear</button>
+    <script>
+        const crear = document.getElementById("crear");
+        const experiencia = document.getElementById("experiencia");
+        const fecha = document.getElementById("fecha");
+        const calificacion = document.getElementById("calificacion");
+        const comentario = document.getElementById("comentario");
+        const precio = document.getElementById("precio");
+
+        crear.onclick = () => {
+            fetch("/experiencias", {
+                method: "POST",
+                body: JSON.stringify({
+                    experiencia: experiencia.value,
+                    fecha: fecha.value,
+                    calificacion: calificacion.value,
+                    comentario: comentario.value,
+                    precio: precio.value
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+    </script>
+</body>
+</html>

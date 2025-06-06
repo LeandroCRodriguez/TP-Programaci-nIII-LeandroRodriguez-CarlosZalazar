@@ -1,5 +1,5 @@
 const {DataTypes} = require('sequelize');
-const sequelize = require('../db/sequelize.js'); //Me traigo Clase sequelize
+const sequelize = require('../db/sequelize'); //Me traigo Clase sequelize
 
 const Viaje = sequelize.define("viajes", {
     id: {
@@ -33,7 +33,7 @@ const Viaje = sequelize.define("viajes", {
 });
 console.log("Modelo Viaje creado correctamente");
  
-Viaje.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
+// Viaje.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
 console.log("Tabla Viaje sincronizada correctamente");
 
 module.exports = Viaje; //Exportamos el modelo

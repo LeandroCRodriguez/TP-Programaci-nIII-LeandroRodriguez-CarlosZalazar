@@ -54,3 +54,14 @@ Validé el campo de ingreso del nombre y lanza mensaje de error.
 LEAN, NO OLVIDES INSTALAR EL npm install body-parse.
 
 Ahí le metí mano al crud y va como piña.
+
+
+--------------------------------------------------
+6/6 
+CARLOS:
+
+-Ya agregué experiencias a las 3 carpetas.
+-CONTROLLERS, MODELS y ROUTES. 
+-importé los modelos y los enrutadores en el index y anda todo joya!
+-Pude levantar las tablas en la base de datos tambien.
+Un gol!

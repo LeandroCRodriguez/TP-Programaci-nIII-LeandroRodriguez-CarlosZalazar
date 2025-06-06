@@ -1,4 +1,4 @@
-const viaje = require('../models/viajes.js'); //Importo el modelo de viajes
+const viaje = require('../models/viajes'); //Importo el modelo de viajes
 
 class ViajeController
 {
