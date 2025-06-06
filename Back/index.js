@@ -26,7 +26,7 @@ app.use(cors());
 //Traigo los Enrutadores
 const viajeRouter = require('./routes/viajes.routes');
 const experienciaRouter = require('./routes/experiencias.routes');
-const adminRouter = require('./routes/admin.routes');
+const adminRouter = require('./routes/admin.routes'); 
 
 
 

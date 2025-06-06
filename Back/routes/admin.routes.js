@@ -10,7 +10,7 @@ router.post('/login', AdminController.procesarLogin);
 
 // Ruta temporal para simular dashboard (todavía no lo hiciste, así que lo agregamos fijo)
 router.get("/dashboard", (req, res) => {
-    res.render("admin/dashboard");
+    res.render("admin/dashboard"); 
 });
 
 
