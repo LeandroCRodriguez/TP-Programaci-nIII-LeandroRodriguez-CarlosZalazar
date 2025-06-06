@@ -1,33 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const ExperienciaController = require('../controllers/experiencias.controller'); // Me traigo el controlador de experiencias    
+
+// Defino las rutas y los métodos del controlador
+router.get('/', ExperienciaController.traerTodos); // Trae todas las experiencias
+router.get('/:id', ExperienciaController.traerPorId); // Trae una experiencia por ID        
+router.post("/", ExperienciaController.crear); // Crea una nueva experiencia
+router.put('/:id', ExperienciaController.modificar); // Modifica una experiencia existente
+router.delete('/:id', ExperienciaController.eliminar); // Elimina una experiencia por ID
 
 
-console.log('Cargando rutas de experiencias...');
-router.get('/',  (req, res) => 
-    {
-        res.send('GET experiencias')
-    });
-
-router.get('/:id',  (req, res) => 
-    {
-        res.send('GET experiencias por ID')
-    });
-
-    router.post('/',  (req, res) => 
-    {
-        res.send('POST experiencias')
-    });
-
-    router.put('/',  (req, res) =>
-    {
-        res.send('PUT experiencias')
-    });
-
-router.delete('/',  (req, res) =>
-{
-    res.send('DELETE experiencias')
-});
-
-
-
-module.exports = router; 
+module.exports = router;  

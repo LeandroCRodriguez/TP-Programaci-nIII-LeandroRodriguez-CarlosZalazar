@@ -14,4 +14,4 @@ router.put('/:id', ViajeController.modificar); // Modifica un viaje existente
 
 router.delete('/:id', ViajeController.eliminar); // Elimina un viaje por ID
 
-module.exports = router; // Exporto el router para usarlo en la aplicación principal  
+module.exports = router; // Exporto el router para usarlo en la aplicación principal   

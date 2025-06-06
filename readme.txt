@@ -6,6 +6,7 @@ Agregar fecha.
 //npm install sequelize
 //npm install mysql2
 //npm install nodemon -D
+//npm install ejs
 
 Armé las siguientes carpetas en el Back:
 -viajes.controller.js
