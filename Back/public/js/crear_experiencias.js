@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear experiencia</title>
-</head>
-<body>
-    <form>
-        <input id="experiencia" name ="experiencia" />
-        <input id="fecha" name ="fecha" />
-        <input id="calificacion" name ="calificacion" />
-        <input id="comentario" name ="comentario" />
-        <input id="precio" name ="precio" />
-    </form>
-    <button id="crear">Crear</button>
-    <script>
-        const crear = document.getElementById("crear");
+const crear = document.getElementById("crear");
         const experiencia = document.getElementById("experiencia");
         const fecha = document.getElementById("fecha");
         const calificacion = document.getElementById("calificacion");
@@ -37,6 +20,3 @@
                 }
             });
         }
-    </script>
-</body>
-</html>

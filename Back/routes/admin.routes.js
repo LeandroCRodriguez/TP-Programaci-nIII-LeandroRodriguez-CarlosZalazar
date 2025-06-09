@@ -13,6 +13,13 @@ router.get("/dashboard", (req, res) => {
     res.render("admin/dashboard"); 
 });
 
+//Ruta para experiencias ejs
+router.get('/crear-experiencias', (req, res) => {
+    res.render('admin/crear_experiencias');
+});
+
+
+
 
 module.exports = router; 
  

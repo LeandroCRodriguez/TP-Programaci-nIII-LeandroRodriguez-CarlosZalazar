@@ -34,6 +34,10 @@ const adminRouter = require('./routes/admin.routes');
 app.use('/viajes', viajeRouter);
 app.use('/experiencias', experienciaRouter);
 app.use('/admin', adminRouter);
+//Configurar carpeta public
+app.use(express.static(Path.join(__dirname, 'public')));
+
+
 
 
     
