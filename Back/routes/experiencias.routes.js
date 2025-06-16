@@ -10,4 +10,4 @@ router.put('/:id', ExperienciaController.modificar); // Modifica una experiencia
 router.delete('/:id', ExperienciaController.eliminar); // Elimina una experiencia por ID
 
 
-module.exports = router;  
+module.exports = router;    

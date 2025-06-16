@@ -18,11 +18,6 @@ const cors = require('cors');
 app.use(cors());
 
 
-
-// Importo los modelos
-    const viajes = require('./models/viajes');
-    const experiencias = require('./models/experiencias');
-
 //Traigo los Enrutadores
 const viajeRouter = require('./routes/viajes.routes');
 const experienciaRouter = require('./routes/experiencias.routes');

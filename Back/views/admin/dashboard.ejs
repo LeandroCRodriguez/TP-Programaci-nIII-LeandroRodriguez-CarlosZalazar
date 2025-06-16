@@ -3,8 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin</title>
+        <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Bienvenido al panel de administración</h1>
+    <%- include('../HeaderYFooterGeneral/header') %>
+<h1>Lista de Viajes</h1>
+<div class="contenedor-viajes">
+  <% viajes.forEach(vj => { %>
+    <div class="viaje">
+      <h3>Viaje: <%= vj.id %></h3>
+      <p><strong>Origen:</strong> <%= vj.origen %></p>
+      <p><strong>Destino:</strong> <%= vj.destino %></p>
+      <p><strong>Fecha de Salida:</strong> <%= vj.fechaSalida %></p>
+      <p><strong>Fecha de Llegada:</strong> <%= vj.fechaLlegada %></p>
+      <p><strong>Precio:</strong> $<%= vj.precio %></p>
+    </div>
+  <% }) %>  
+</div>
+<div class="acciones-viajes">
+   <a href="/admin/viajes/crear" class="button">Crear viaje</a>
+   <a href="/admin/viajes/eliminar" class="button">Eliminar viaje</a>
+   <a href="/admin/viajes/modificar" class="button">modificar viaje</a>
+</div>
+
+<h1>Lista de Experiencias</h1>
+<div class="contenedor-experiencias">
+  <% experiencias.forEach(exp => { %>
+    <div class="experiencia">
+      <h3>Experiencia: <%= exp.id %></h3>
+      <p><strong>Nombre:</strong> <%= exp.experiencia %></p>
+      <p><strong>Fecha:</strong> <%= exp.fecha %></p>
+      <p><strong>Calificación:</strong> <%= exp.calificacion %></p>
+      <p><strong>Comentario:</strong> <%= exp.comentario %></p>
+      <p><strong>Precio:</strong> $<%= exp.precio %></p>
+    </div>
+  <% }) %>
+</div>
+<div>
+  <div class="acciones-experiencias">
+    <a href="/admin/experiencias/crear" class="button">Crear experiencia</a>
+    <a href="/admin/experiencias/eliminar" class="button">Eliminar experiencia</a>
+    <a href="/admin/experiencias/modificar" class="button">Modificar experiencia</a>
+  </div>
+</div>
+    <%- include('../HeaderYFooterGeneral/footer') %>
 </body>
 </html>
+

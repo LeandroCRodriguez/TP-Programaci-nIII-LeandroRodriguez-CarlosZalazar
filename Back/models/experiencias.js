@@ -17,7 +17,7 @@ const Experiencia = sequelize.define("experiencias", {
         allowNull: false,
     },
     calificacion: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER, 
         allowNull: false,
         validate: {
             min: 1,
@@ -25,13 +25,15 @@ const Experiencia = sequelize.define("experiencias", {
         }
     },
     comentario: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: true,
     },
     precio: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
-    },
+    }
+}, {
+    timestamps: false
 });
 
 console.log("Modelo Viaje creado correctamente");

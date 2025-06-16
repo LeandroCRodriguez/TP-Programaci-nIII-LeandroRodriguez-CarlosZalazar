@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Administrador</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+      <%- include('../HeaderYFooterGeneral/header') %>
     <h1>Login de Administrador</h1>
-    <p>Integrantes: Leandro Rodríguez y Carlos Zalazar</p>
+    
 
     <form method="post" action="/admin/login">
         <label>Correo:</label>
@@ -18,7 +20,7 @@
         <button type="submit">Ingresar</button>
         <button type="button" onclick="autocompletar()">Autocompletar</button>
     </form>
-
+         <%- include('../HeaderYFooterGeneral/footer') %>
     <script>
         function autocompletar() {
             document.getElementById('email').value = 'admin@admin.com';

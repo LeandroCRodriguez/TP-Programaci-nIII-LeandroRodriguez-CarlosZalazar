@@ -22,7 +22,8 @@ class ViajeController
         const { origen, destino, fechaSalida, fechaLlegada, precio } = req.body; //Obtengo los datos del viaje del cuerpo de la petición
         try {
             const nuevoViaje = await viaje.create({ origen, destino, fechaSalida, fechaLlegada, precio }); 
-            res.status(201).send(nuevoViaje); 
+            // res.status(201).send(nuevoViaje); 
+            res.redirect('/admin/dashboard');
         } catch (error) {
             res.status(400).send({ error: 'Error al crear el viaje' }); 
         }

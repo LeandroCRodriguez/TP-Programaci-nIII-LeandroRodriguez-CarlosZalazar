@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <title>Crear Viaje</title>
+</head>
+<body>
+     <%- include('../HeaderYFooterGeneral/header') %>
+    <h1>Crear viaje</h1>
+    <form action="/admin/viajes/crear" method="POST">
+        <label for="origen">Origen:</label><br>
+        <input type="text" id="origen" name ="origen" required />
+
+        <label for="destino">Destino:</label><br>
+        <input type="text" id="destino" name="destino" required />
+
+        <label for="fechaSalida">Fecha de Salida:</label><br>
+        <input type="date" id="fechaSalida" name="fechaSalida" required />
+
+        <label for="fechaLlegada">Fecha de Llegada:</label><br>
+        <input type="date" id="fechaLlegada" name="fechaLlegada" required />
+
+        <label for="precio">Precio:</label><br>
+        <input type="number" id="precio" name="precio" required />
+
+        <button type="submit" class="button">Crear Viaje</button>
+        <a href="/admin/dashboard" class="button cancel-button">Cancelar</a>
+    </form>
+    <%- include('../HeaderYFooterGeneral/footer') %>
+
+</body>
+</html>
