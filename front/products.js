@@ -22,6 +22,19 @@ btnViajes.addEventListener("click", () => {
     cargarViajes();
 });
 
+// Configurar el botón de experiencias
+const btnExperiencias = document.getElementById("btnExperciencias");
+
+btnExperiencias.addEventListener("click", () => {
+    const btnViajes = document.getElementById("btnViajes");
+
+    if (btnViajes) btnViajes.remove();
+    btnExperiencias.remove();
+
+    cargarExperiencias();
+});
+
+
 // Función para cargar los viajes desde la API y renderizarlos
 async function cargarViajes() {
 
@@ -44,8 +57,10 @@ async function cargarViajes() {
             const viajeObj = new Viajes(
                 viaje.origen,
                 viaje.destino,
+                viaje.descripcion || "Descripción no disponible",
                 viaje.fechaSalida,
                 viaje.fechaLlegada,
+                viaje.imagen || "default.jpg", // Imagen por defecto si no se proporciona
                 viaje.precio
             );
             console.log(viajeObj);

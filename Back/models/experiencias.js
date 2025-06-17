@@ -31,9 +31,9 @@ const Experiencia = sequelize.define("experiencias", {
     precio: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    }
+    },
 }, {
-    timestamps: false
+    timestamps: false // Evita la creación de las columnas createdAt y updatedAt
 });
 
 console.log("Modelo Viaje creado correctamente");

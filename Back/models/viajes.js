@@ -16,6 +16,14 @@ const Viaje = sequelize.define("viajes", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    descripcion: {
+        type: DataTypes.TEXT, // Podés usar STRING si es corto, TEXT si es largo
+        allowNull: false,
+    },
+    imagen: {
+        type: DataTypes.STRING, // Guarda solo el nombre o ruta relativa
+        allowNull: false,
+    },
     fechaSalida: {
         type: DataTypes.DATE,
         allowNull: false,
