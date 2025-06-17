@@ -1,3 +1,5 @@
+const Viaje = require('../models/viajes'); 
+const Experiencia = require('../models/experiencias');
 
 class AdminController {
     static mostrarLogin(req, res) {

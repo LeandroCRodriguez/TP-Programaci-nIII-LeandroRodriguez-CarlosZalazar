@@ -13,7 +13,6 @@
         form {
             max-width: 400px;
             margin: auto;
-            background: #fff;
             padding: 20px;
             border-radius: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -85,7 +84,7 @@
         border-radius: 5px;
         cursor: pointer;
         text-align: center;
-        text-decoration: none; /* Quitar subrayado del enlace */
+        text-decoration: none; 
         font-size: 16px;
     }
 
@@ -93,7 +92,7 @@
         background-color: #0056b3; /* Color de fondo al pasar el ratón */
     }
 
-    .acciones-viajes, .acciones-experiencias {
+    .acciones-globales, .acciones-item {
         margin-top: 20px;
         margin-bottom: 40px; /* Espacio entre las secciones */
         text-align: center;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <title>Modificar Viaje</title>
+</head>
+<body>
+     <%- include('../HeaderYFooterGeneral/header') %>
+    <h1>Modificar viaje</h1>
+    <form action="/admin/viajes/modificar/<%= viaje.id %>" method="POST">
+        <label for="origen">Origen:</label><br>
+        <input type="text" id="origen" name ="origen" value="<%= viaje.origen %>" required />
+
+        <label for="destino">Destino:</label><br>
+        <input type="text" id="destino" name="destino" value="<%= viaje.destino %>" required />
+
+        <label for="fechaSalida">Fecha de Salida:</label><br>
+        <input type="date" id="fechaSalida" name="fechaSalida" value="<%= viaje.fechaSalida ? new Date(viaje.fechaSalida).toISOString().split('T')[0] : '' %>" required />
+
+        <label for="fechaLlegada">Fecha de Llegada:</label><br>
+        <input type="date" id="fechaLlegada" name="fechaLlegada" value="<%= viaje.fechaLlegada ? new Date(viaje.fechaLlegada).toISOString().split('T')[0] : '' %>" required />
+
+        <label for="precio">Precio:</label><br>
+        <input type="number" id="precio" name="precio" min="0" value="<%= viaje.precio %>" required /> 
+
+        <button type="submit" class="button">Modificar Viaje</button>
+        <a href="/admin/dashboard" class="button cancel-button">Cancelar</a>
+    </form>
+    <%- include('../HeaderYFooterGeneral/footer') %>
+</body>
+</html>

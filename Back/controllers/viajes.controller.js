@@ -7,13 +7,24 @@ class ViajeController
         res.send(viajes); 
     }
 
-    static async traerPorId(req, res) {
-        const id = req.params.id; //Obtengo el id del viaje
-        const viajeEncontrado = await viaje.findByPk(id); 
-        if (viajeEncontrado) {
-            res.send(viajeEncontrado); 
-        } else {
-            res.status(404).send({ error: 'Viaje no encontrado' }); 
+    // static async traerPorId(req, res) {
+    //     const id = req.params.id; //Obtengo el id del viaje
+    //     const viajeEncontrado = await viaje.findByPk(id);  
+    //     if (viajeEncontrado) {
+    //         res.send(viajeEncontrado); 
+    //     } else {
+    //         res.status(404).send({ error: 'Viaje no encontrado' }); 
+    //     }
+    // }
+
+    static async traerPorId(req) {
+        const id = req.params.id;
+        try {
+            const viajeEncontrado = await viaje.findByPk(id);
+            return viajeEncontrado; 
+        } catch (error) {
+            console.error("Error al obtener viaje para formulario:", error);
+            return null;
         }
     }
 
@@ -36,7 +47,7 @@ class ViajeController
             const viajeEncontrado = await viaje.findByPk(id); 
             if (viajeEncontrado) {
                 await viajeEncontrado.update({ origen, destino, fechaSalida, fechaLlegada, precio }); 
-                res.send(viajeEncontrado); 
+                res.redirect('/admin/dashboard');
             } else {
                 res.status(404).send({ error: 'Viaje no encontrado' }); 
             }
@@ -51,7 +62,7 @@ class ViajeController
             const viajeEncontrado = await viaje.findByPk(id); 
             if (viajeEncontrado) {
                 await viajeEncontrado.destroy(); 
-                res.status(204).send(); 
+                res.redirect('/admin/dashboard');  
             } else {
                 res.status(404).send({ error: 'Viaje no encontrado' }); 
             }
@@ -59,7 +70,7 @@ class ViajeController
             res.status(400).send({ error: 'Error al eliminar el viaje' }); 
         }
     }   
-
+    
 }
 
 module.exports = ViajeController; 

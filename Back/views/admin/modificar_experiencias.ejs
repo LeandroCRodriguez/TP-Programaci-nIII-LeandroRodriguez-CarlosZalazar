@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <title>Modificar experiencia</title>
+</head>
+<body>
+    <%- include('../HeaderYFooterGeneral/header') %>       
+    <h1>Modificar Experiencia</h1>
+    <form action="/admin/experiencias/modificar/<%= experiencia.id %>" method="POST">
+        <label for="experiencia">Experiencia:</label><br>
+        <input type="text" id="experiencia" name ="experiencia" value="<%= experiencia.experiencia %>" required/>
+        
+        <label for="fecha">Fecha:</label><br>        
+        <input type="date" id="fecha" name="fecha" value="<%= experiencia.fecha ? new Date(experiencia.fecha).toISOString().split('T')[0] : '' %>" required/>
+
+        
+        <label for="calificacion">Calificacion:</label><br>
+        <input type="number" id="calificacion" name ="calificacion" min="1" max="5" value="<%= experiencia.calificacion %>" required/>
+        
+        <label for="comentario">Comentario:</label><br>       
+        <input id="comentario" name ="comentario" value="<%= experiencia.comentario %>" />
+        
+        <label for="precio">Precio:</label><br>
+        <input type="number" id="precio" name ="precio" min="0" value="<%= experiencia.precio %>" required/>
+        
+        <button type="submit" class="button">Modificar Experiencia</button>
+        <a href="/admin/dashboard" class="button cancel-button">Cancelar</a>
+    </form>
+      <%- include('../HeaderYFooterGeneral/footer') %>
+</body>
+</html>
+
+
+

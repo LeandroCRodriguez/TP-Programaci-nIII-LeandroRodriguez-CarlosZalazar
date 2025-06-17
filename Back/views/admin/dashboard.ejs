@@ -17,13 +17,17 @@
       <p><strong>Fecha de Salida:</strong> <%= vj.fechaSalida %></p>
       <p><strong>Fecha de Llegada:</strong> <%= vj.fechaLlegada %></p>
       <p><strong>Precio:</strong> $<%= vj.precio %></p>
+      <div class="acciones-item">
+        <a href="/admin/viajes/modificar/<%= vj.id %>" class="button button-modificar">Modificar</a>
+        <form action="/admin/viajes/eliminar/<%= vj.id %>" method="POST">
+            <button type="submit" class="button button-eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este viaje?');">Eliminar</button>
+        </form>
+      </div>
     </div>
   <% }) %>  
 </div>
-<div class="acciones-viajes">
+<div class="acciones-globales">
    <a href="/admin/viajes/crear" class="button">Crear viaje</a>
-   <a href="/admin/viajes/eliminar" class="button">Eliminar viaje</a>
-   <a href="/admin/viajes/modificar" class="button">modificar viaje</a>
 </div>
 
 <h1>Lista de Experiencias</h1>
@@ -36,16 +40,18 @@
       <p><strong>Calificación:</strong> <%= exp.calificacion %></p>
       <p><strong>Comentario:</strong> <%= exp.comentario %></p>
       <p><strong>Precio:</strong> $<%= exp.precio %></p>
+      <div class="acciones-item">
+          <a href="/admin/experiencias/modificar/<%= exp.id %>" class="button button-modificar">Modificar</a>
+          <form action="/admin/experiencias/eliminar/<%= exp.id %>" method="POST">
+              <button type="submit" class="button button-eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta experiencia?');">Eliminar</button>
+          </form>
+      </div>
     </div>
   <% }) %>
 </div>
-<div>
-  <div class="acciones-experiencias">
+  <div class="acciones-globales">
     <a href="/admin/experiencias/crear" class="button">Crear experiencia</a>
-    <a href="/admin/experiencias/eliminar" class="button">Eliminar experiencia</a>
-    <a href="/admin/experiencias/modificar" class="button">Modificar experiencia</a>
   </div>
-</div>
     <%- include('../HeaderYFooterGeneral/footer') %>
 </body>
 </html>

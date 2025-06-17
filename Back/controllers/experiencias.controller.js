@@ -7,15 +7,26 @@ class ExperienciaController
         res.send(experiencias); 
     }
 
-    static async traerPorId(req, res) { 
-        const id = req.params.id; 
-        const experienciaEncontrada = await ExperienciaModel.findByPk(id); //Buscamos la experiencia por su id
-        if (experienciaEncontrada) {
-            res.send(experienciaEncontrada); 
-        } else {
-            res.status(404).send({ error: 'Experiencia no encontrada' }); 
+    // static async traerPorId(req, res) { 
+    //     const id = req.params.id; 
+    //     const experienciaEncontrada = await ExperienciaModel.findByPk(id); //Buscamos la experiencia por su id
+    //     if (experienciaEncontrada) {
+    //         res.send(experienciaEncontrada); 
+    //     } else {
+    //         res.status(404).send({ error: 'Experiencia no encontrada' }); 
+    //     }
+    // }
+
+        static async traerPorId(req) {
+            const id = req.params.id;
+            try {
+                const experienciaEncontrada = await ExperienciaModel.findByPk(id);
+                return experienciaEncontrada; 
+            } catch (error) {
+                console.error("Error al obtener la experiencia para formulario:", error);
+                return null;
+            }
         }
-    }
 
     static async crear(req, res) {
         const { experiencia, fecha, calificacion, comentario, precio } = req.body; //Obtenemos los datos de la experiencia del cuerpo de la petición
@@ -34,7 +45,7 @@ class ExperienciaController
             const experienciaEncontrada = await ExperienciaModel.findByPk(id); 
             if (experienciaEncontrada) {
                 await experienciaEncontrada.update({ experiencia, fecha, calificacion, comentario, precio }); 
-                res.send(experienciaEncontrada); 
+                 res.redirect('/admin/dashboard'); 
             } else {
                 res.status(404).send({ error: 'Experiencia no encontrada' }); 
             }
@@ -48,7 +59,7 @@ class ExperienciaController
             const experienciaEncontrada = await ExperienciaModel.findByPk(id);  
             if (experienciaEncontrada) {
                 await experienciaEncontrada.destroy(); 
-                res.status(204).send(); 
+                res.redirect('/admin/dashboard'); 
             } else {
                 res.status(404).send({ error: 'Experiencia no encontrada' }); 
             }
@@ -56,5 +67,5 @@ class ExperienciaController
             res.status(400).send({ error: 'Error al eliminar la experiencia' }); 
         }
     }
-}
+} 
 module.exports = ExperienciaController; 
