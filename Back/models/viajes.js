@@ -17,11 +17,11 @@ const Viaje = sequelize.define("viajes", {
         allowNull: false,
     },
     descripcion: {
-        type: DataTypes.TEXT, // Podés usar STRING si es corto, TEXT si es largo
-        allowNull: false,
+        type: DataTypes.TEXT, 
+        // allowNull: false,
     },
     imagen: {
-        type: DataTypes.STRING, // Guarda solo el nombre o ruta relativa
+        type: DataTypes.STRING, 
         allowNull: false,
     },
     fechaSalida: {
@@ -37,11 +37,11 @@ const Viaje = sequelize.define("viajes", {
         allowNull: false,
     }
 }, {
-    timestamps: false // Evita la creación de las columnas createdAt y updatedAt
+    timestamps: false 
 });
 console.log("Modelo Viaje creado correctamente");
  
-// Viaje.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
+// Viaje.sync({alter: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
 console.log("Tabla Viaje sincronizada correctamente");
 
 module.exports = Viaje; //Exportamos el modelo
