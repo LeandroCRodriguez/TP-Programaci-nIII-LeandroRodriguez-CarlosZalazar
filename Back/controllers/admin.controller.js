@@ -1,21 +1,36 @@
 const Viaje = require('../models/viajes'); 
 const Experiencia = require('../models/experiencias');
+const Admin = require("../models/admin")
+const BCrypt = require("bcrypt");
+
 
 class AdminController {
     static mostrarLogin(req, res) {
         res.render("admin/login", { error: null });
     }
 
-    static procesarLogin(req, res) {
-        const { email, password } = req.body;
+    static async procesarLogin(req, res) {
+    const { email, password } = req.body;    
+    
+    try {
+      const admin = await Admin.findOne({ where: { email } });
 
-        // Credenciales hardcodeadas
-        if (email === "admin@admin.com" && password === "1234") {
-            return res.redirect("/admin/dashboard");
-        } else {
-            return res.render("admin/login", { error: "contraseña incorrectas" }); 
-        }
-    }
+      if (!admin) {
+        return res.render("admin/login", { error: "Email incorrecto" });
+      }
+
+      const esValido = BCrypt.compareSync(password, admin.password);
+
+      if (esValido) {
+        return res.redirect("/admin/dashboard");
+      } else {
+        return res.render("admin/login", { error: "Contraseña incorrecta" });
+      }
+    } catch (error) {
+      return res.render("admin/login", { error: "Error en el servidor" });
+    }    
+  }
+    
 
     static async mostrarDashboard(req, res) {
         try {

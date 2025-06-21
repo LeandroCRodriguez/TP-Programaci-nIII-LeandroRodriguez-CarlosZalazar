@@ -7,6 +7,7 @@ Agregar fecha.
 //npm install mysql2
 //npm install nodemon -D
 //npm install ejs
+//npm i Bcrypt
 
 Armé las siguientes carpetas en el Back:
 -viajes.controller.js

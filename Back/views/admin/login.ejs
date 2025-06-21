@@ -19,12 +19,15 @@
 
         <button type="submit">Ingresar</button>
         <button type="button" onclick="autocompletar()">Autocompletar</button>
+        <% if(error) { %>
+            <p><%= error %></p>
+            <% } %>
     </form>
          <%- include('../HeaderYFooterGeneral/footer') %>
     <script>
         function autocompletar() {
-            document.getElementById('email').value = 'admin@admin.com';
-            document.getElementById('password').value = '1234';
+            document.getElementById('email').value = 'admin@login';
+            document.getElementById('password').value = '123456';
         }
     </script>
 </body>

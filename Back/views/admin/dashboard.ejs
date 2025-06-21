@@ -14,8 +14,8 @@
       <h3>Viaje: <%= vj.id %></h3>
       <p><strong>Origen:</strong> <%= vj.origen %></p>
       <p><strong>Destino:</strong> <%= vj.destino %></p>
-      <p><strong>Fecha de Salida:</strong> <%= vj.fechaSalida %></p>
-      <p><strong>Fecha de Llegada:</strong> <%= vj.fechaLlegada %></p>
+      <p><strong>Fecha de Salida:</strong> <%= new Date(vj.fechaSalida).toLocaleString("es-AR", {hour12: false,   hour: "2-digit", minute: "2-digit",}) %></p>
+      <p><strong>Fecha de Llegada:</strong> <%= new Date(vj.fechaLlegada).toLocaleString("es-AR",{hour12: false,   hour: "2-digit", minute: "2-digit",}) %></p>
       <p><strong>Precio:</strong> $<%= vj.precio %></p>
       <img src="<%= vj.imagen %>" alt="Imagen de <%= vj.origen %> a <%= vj.destino %>" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
 
@@ -38,7 +38,7 @@
     <div class="experiencia">
       <h3>Experiencia: <%= exp.id %></h3>
       <p><strong>Nombre:</strong> <%= exp.experiencia %></p>
-      <p><strong>Fecha:</strong> <%= exp.fecha %></p>
+      <p><strong>Fecha:</strong> <%= new Date(exp.fecha).toLocaleString("es-AR", {hour12: false,   hour: "2-digit", minute: "2-digit",}) %></p>
       <p><strong>Calificación:</strong> <%= exp.calificacion %></p>
       <p><strong>Comentario:</strong> <%= exp.comentario %></p>
       <p><strong>Precio:</strong> $<%= exp.precio %></p>

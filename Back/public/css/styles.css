@@ -1,3 +1,5 @@
+
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -96,4 +98,12 @@
         margin-top: 20px;
         margin-bottom: 40px; /* Espacio entre las secciones */
         text-align: center;
+    }
+
+    .footer
+    {
+        font-weight: bold;
+        color: #0c2252;
+        font-family: 'Comic Sans MS', cursive;
+        font-style: italic;
     }
