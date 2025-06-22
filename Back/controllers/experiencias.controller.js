@@ -7,15 +7,6 @@ class ExperienciaController
         res.send(experiencias); 
     }
 
-    // static async traerPorId(req, res) { 
-    //     const id = req.params.id; 
-    //     const experienciaEncontrada = await ExperienciaModel.findByPk(id); //Buscamos la experiencia por su id
-    //     if (experienciaEncontrada) {
-    //         res.send(experienciaEncontrada); 
-    //     } else {
-    //         res.status(404).send({ error: 'Experiencia no encontrada' }); 
-    //     }
-    // }
 
         static async traerPorId(req) {
             const id = req.params.id;

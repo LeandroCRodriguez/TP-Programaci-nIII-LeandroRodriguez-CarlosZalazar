@@ -4,6 +4,8 @@ const AdminController = require('../controllers/admin.controller');
 const viajeController = require('../controllers/viajes.controller'); 
 const experienciaController = require('../controllers/experiencias.controller'); 
 //Agregar middlewares
+//Para usar middlewares ya hechos tengo que instalar
+//npm i cors errorhandler morgan 
 
 
 router.get('/dashboard', AdminController.mostrarDashboard);
@@ -16,8 +18,13 @@ router.get('/viajes/crear', (req, res) => {
     res.render('admin/crear_viajes'); // Renderiza tu vista EJS para crear viajes
 });
 
+
+
+//Middlewares 
+const validarViaje = require('../middlewares/validarViaje'); 
+
 // Procesa el formulario de creación de viajes
-router.post('/viajes/crear', viajeController.crear); // Usa el método crear del controlador de viajes
+router.post('/viajes/crear',validarViaje, viajeController.crear); // Usa el método crear del controlador de viajes
 
 // Muestra el formulario para crear una nueva experiencia
 router.get('/experiencias/crear', (req, res) => {
