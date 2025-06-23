@@ -7,7 +7,7 @@ class ViajeController
         res.send(viajes); 
     }
 
-    static async traerPorId(req) {
+    static async traerPorId(req) { 
         const id = req.params.id;
         try {
             const viajeEncontrado = await viaje.findByPk(id);

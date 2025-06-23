@@ -3,10 +3,6 @@ const router = express.Router();
 const AdminController = require('../controllers/admin.controller'); 
 const viajeController = require('../controllers/viajes.controller'); 
 const experienciaController = require('../controllers/experiencias.controller'); 
-//Agregar middlewares
-//Para usar middlewares ya hechos tengo que instalar
-//npm i cors errorhandler morgan 
-
 
 router.get('/dashboard', AdminController.mostrarDashboard);
 router.get('/login', AdminController.mostrarLogin);
@@ -15,12 +11,11 @@ router.post('/login', AdminController.procesarLogin);
 // Rutas para crear
 
 router.get('/viajes/crear', (req, res) => {
-    res.render('admin/crear_viajes'); // Renderiza tu vista EJS para crear viajes
+    res.render('admin/crear_viajes',{errores:{}}); // Renderiza tu vista EJS para crear viajes
 });
 
 
-
-//Middlewares 
+//Middleware para crear viaje
 const validarViaje = require('../middlewares/validarViaje'); 
 
 // Procesa el formulario de creación de viajes
@@ -28,11 +23,14 @@ router.post('/viajes/crear',validarViaje, viajeController.crear); // Usa el mét
 
 // Muestra el formulario para crear una nueva experiencia
 router.get('/experiencias/crear', (req, res) => {
-    res.render('admin/crear_experiencias'); // Renderiza tu vista EJS para crear experiencias
+    res.render('admin/crear_experiencias',{errores:{}}); // Renderiza tu vista EJS para crear experiencias
 });
 
+
+//Middleware para crear experiencia
+const validarExperiencia = require("../middlewares/validarExperiencia");  
 // Procesa el formulario de creación de experiencias
-router.post('/experiencias/crear', experienciaController.crear); // Usa el método crear del controlador de experiencias
+router.post('/experiencias/crear',validarExperiencia, experienciaController.crear); // Usa el método crear del controlador de experiencias
 
 //Rutas para eliminar
 
@@ -41,11 +39,11 @@ router.post('/experiencias/eliminar/:id', experienciaController.eliminar);
 
 //Rutas para modificar
 
-router.get("/viajes/modificar/:id", async (req, res) => { // ¡Ahora es async!
+router.get("/viajes/modificar/:id", async (req, res) => {
     try {
         const viajeEncontrado = await viajeController.traerPorId(req); 
         if (viajeEncontrado) {
-            res.render("admin/modificar_viajes", { viaje: viajeEncontrado }); 
+            res.render("admin/modificar_viajes", { viaje: viajeEncontrado , errores:{}}); 
         } else {
             res.status(404).send('Viaje no encontrado para modificar');
         }
@@ -55,11 +53,11 @@ router.get("/viajes/modificar/:id", async (req, res) => { // ¡Ahora es async!
     }
 });
 
-router.get("/experiencias/modificar/:id", async (req, res) => { // ¡Ahora es async!
+router.get("/experiencias/modificar/:id", async (req, res) => { 
     try {
         const experienciaEncontrada = await experienciaController.traerPorId(req); 
         if (experienciaEncontrada) {
-            res.render("admin/modificar_experiencias", { experiencia: experienciaEncontrada }); 
+            res.render("admin/modificar_experiencias", { experiencia: experienciaEncontrada, errores:{} }); 
         } else {
             res.status(404).send('Experiencia no encontrada para modificar');
         }
@@ -69,8 +67,8 @@ router.get("/experiencias/modificar/:id", async (req, res) => { // ¡Ahora es as
     }
 });
 
-router.post('/viajes/modificar/:id', viajeController.modificar);
-router.post('/experiencias/modificar/:id', experienciaController.modificar); 
+router.post('/viajes/modificar/:id', validarViaje, viajeController.modificar);
+router.post('/experiencias/modificar/:id',validarExperiencia, experienciaController.modificar); 
 
 module.exports = router; 
 

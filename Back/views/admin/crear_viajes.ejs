@@ -12,9 +12,15 @@
     <form action="/admin/viajes/crear" method="POST">
         <label for="origen">Origen:</label><br>
         <input type="text" id="origen" name ="origen" required />
+        <% if (errores?.origen) { %>
+        <p class="error"><%= errores.origen %></p> 
+        <% } %>
 
         <label for="destino">Destino:</label><br>
         <input type="text" id="destino" name="destino" required />
+        <% if (errores?.destino) { %>
+        <p class="error"><%= errores.destino %></p>
+        <% } %>
 
         <label for="fechaSalida">Fecha de Salida:</label><br>
         <input type="datetime-local" id="fechaSalida" name="fechaSalida" class="form-control" step="1" required />
@@ -24,6 +30,10 @@
 
         <label for="precio">Precio:</label><br>
         <input type="number" id="precio" name="precio" required />
+        <% if (errores?.precio) { %>
+        <p class="error"><%= errores.precio %></p>
+        <% } %>
+
 
         <label for="imagen">URL/Nombre de Imagen:</label><br>
         <input type="text" id="imagen" name="imagen" required /><br> 
