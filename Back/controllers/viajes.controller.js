@@ -1,65 +1,82 @@
-const viaje = require('../models/viajes'); //Importo el modelo de viajes
+const viaje = require('../models/viajes');
 
-class ViajeController
-{
+class ViajeController {
     static async traerTodos(req, res) {
-        const viajes = await viaje.findAll(); 
-        res.send(viajes); 
+        const viajes = await viaje.findAll();
+        res.send(viajes);
     }
 
     static async traerPorId(req) { 
         const id = req.params.id;
         try {
             const viajeEncontrado = await viaje.findByPk(id);
-            return viajeEncontrado; 
+            return viajeEncontrado;
         } catch (error) {
-            console.error("Error al obtener viaje para formulario:", error);
+            console.error("Error al obtener viaje:", error);
             return null;
         }
     }
 
-
     static async crear(req, res) {
-        const { origen, destino, fechaSalida, fechaLlegada, precio, imagen } = req.body; //Obtengo los datos del viaje del cuerpo de la petición
+        const { origen, destino, fechaSalida, fechaLlegada, descripcion, precio } = req.body;
+        const imagen = req.file ? req.file.filename : null;
+
         try {
-            const nuevoViaje = await viaje.create({ origen, destino, fechaSalida, fechaLlegada, precio, imagen }); 
+            await viaje.create({
+                origen,
+                destino,
+                fechaSalida,
+                fechaLlegada,
+                precio,
+                descripcion,
+                imagen
+            });
             res.redirect('/admin/dashboard');
         } catch (error) {
+            console.error("Error al crear el viaje:", error);
             res.status(400).send({ error: 'Error al crear el viaje', details: error.message });
         }
-    }   
+    }
 
-    static async modificar(req, res) { 
-        const id = req.params.id; 
-        const { origen, destino, fechaSalida, fechaLlegada, precio, imagen } = req.body; 
+    static async modificar(req, res) {
+        const id = req.params.id;
+        const { origen, destino, fechaSalida, fechaLlegada, precio, imagen } = req.body;
         try {
-            const viajeEncontrado = await viaje.findByPk(id); 
+            const viajeEncontrado = await viaje.findByPk(id);
             if (viajeEncontrado) {
-                await viajeEncontrado.update({ origen, destino, fechaSalida, fechaLlegada, precio, imagen }); 
+                await viajeEncontrado.update({
+                    origen,
+                    destino,
+                    fechaSalida,
+                    fechaLlegada,
+                    precio,
+                    imagen
+                });
                 res.redirect('/admin/dashboard');
             } else {
-                res.status(404).send({ error: 'Viaje no encontrado' }); 
+                res.status(404).send({ error: 'Viaje no encontrado' });
             }
         } catch (error) {
-            res.status(400).send({ error: 'Error al modificar el viaje' }); 
+            console.error("Error al modificar el viaje:", error);
+            res.status(400).send({ error: 'Error al modificar el viaje' });
         }
-    }       
+    }
 
     static async eliminar(req, res) {
-        const id = req.params.id; 
+        const id = req.params.id;
         try {
-            const viajeEncontrado = await viaje.findByPk(id); 
+            const viajeEncontrado = await viaje.findByPk(id);
             if (viajeEncontrado) {
-                await viajeEncontrado.destroy(); 
-                res.redirect('/admin/dashboard');  
+                await viajeEncontrado.destroy();
+                res.redirect('/admin/dashboard');
             } else {
-                res.status(404).send({ error: 'Viaje no encontrado' }); 
+                res.status(404).send({ error: 'Viaje no encontrado' });
             }
         } catch (error) {
-            res.status(400).send({ error: 'Error al eliminar el viaje' }); 
+            console.error("Error al eliminar el viaje:", error);
+            res.status(400).send({ error: 'Error al eliminar el viaje' });
         }
-    }   
-    
+    }
 }
 
-module.exports = ViajeController; 
+module.exports = ViajeController;

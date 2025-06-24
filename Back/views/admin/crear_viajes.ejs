@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css"/>
-    <title>Crear Viaje</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <title>Crear Viaje</title>
 </head>
+
 <body>
-     <%- include('../HeaderYFooterGeneral/header') %>
+  <%- include('../HeaderYFooterGeneral/header') %>
     <h1>Crear viaje</h1>
     <form action="/admin/viajes/crear" method="POST">
         <label for="origen">Origen:</label><br>
@@ -35,13 +38,27 @@
         <% } %>
 
 
-        <label for="imagen">URL/Nombre de Imagen:</label><br>
-        <input type="text" id="imagen" name="imagen" required /><br> 
+      <label for="precio">Precio:</label><br>
+      <input type="number" id="precio" name="precio" required />
 
-        <button type="submit" class="button">Crear Viaje</button>
-        <a href="/admin/dashboard" class="button cancel-button">Cancelar</a>
+      <label for="descripcion">Descripción:</label><br>
+      <textarea id="descripcion" name="descripcion" required></textarea><br>
+
+      <label for="file" class="form-label">Seleccionar archivo:</label>
+      <input type="file" class="form-control" id="file" name="file" />
+
+
+      <!-- <label for="imagen">URL/Nombre de Imagen:</label><br>
+        <input type="text" id="imagen" name="imagen" required /><br>   -->
+
+      <button type="submit" class="button">Crear Viaje</button>
+      <a href="/admin/dashboard" class="button cancel-button">Cancelar</a>
     </form>
     <%- include('../HeaderYFooterGeneral/footer') %>
 
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

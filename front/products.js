@@ -1,4 +1,5 @@
 import { Viajes } from "./js/viajes-class.js";
+import { Experiences } from "./js/experience-class.js";
 
 // Obtener nombre de usuario del localStorage
 const nombreUsuario = localStorage.getItem("nombreUsuario");
@@ -33,6 +34,8 @@ btnExperiencias.addEventListener("click", () => {
 
     cargarExperiencias();
 });
+
+btnExperiencias.add
 
 
 // Función para cargar los viajes desde la API y renderizarlos
@@ -73,5 +76,46 @@ async function cargarViajes() {
 
     } catch (error) {
         console.error("No se han podido obtener los viajes, sorry", error);
+    }
+    
+}
+
+async function cargarExperiencias() {
+    const Title = document.getElementById("title-container");
+    Title.textContent = "Experiencias disponibles";
+    try {
+        const response = await fetch("http://localhost:3000/experiencias");
+
+
+        if (!response.ok) {
+            throw new Error(`Error al cargar experiencias: ${response.status}`);
+        }
+
+        const experienciasAPI = await response.json();
+        console.log(experienciasAPI);
+
+        const experienciasRow = document.getElementById("products-row");
+        experienciasRow.innerHTML = ""; // Limpiar contenedor
+
+        // Renderizar cada experiencia como tarjeta
+        experienciasAPI.forEach((experiencia) => {
+            const experienciaObj = new Experiences(
+                experiencia.title,
+                experiencia.description || "Descripción no disponible",
+                experiencia.fechaDesde,
+                experiencia.fechaHasta,
+                experiencia.imagen || "default.jpg", // Imagen por defecto si no se proporciona
+                experiencia.price
+            );
+            console.log(experienciaObj);
+
+            const experienciaElement = experienciaObj.createElementHtml();
+            experienciasRow.appendChild(experienciaElement);
+        });
+
+        console.log("Experiencias cargadas correctamente");
+
+    } catch (error) {
+        console.error("No se han podido obtener las experiencias, sorry", error);
     }
 }

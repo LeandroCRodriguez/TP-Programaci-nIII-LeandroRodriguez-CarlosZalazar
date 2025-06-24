@@ -5,40 +5,40 @@ const Experiencia = sequelize.define("experiencias", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true, 
+        autoIncrement: true,
         allowNull: false,
     },
-    experiencia: {
+    title: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    fecha: {
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    fechaDesde: {
         type: DataTypes.DATE,
         allowNull: false,
     },
-    calificacion: {
-        type: DataTypes.INTEGER, 
+    fechaHasta: {
+        type: DataTypes.DATE,
         allowNull: false,
-        validate: {
-            min: 1,
-            max: 5
-        }
     },
-    comentario: {
+    Imagen: {
         type: DataTypes.STRING,
-        allowNull: true,
     },
-    precio: {
-        type: DataTypes.INTEGER,
+    price: {
+        type: DataTypes.FLOAT,
         allowNull: false,
-    },
+    }
 }, {
-    timestamps: false // Evita la creación de las columnas createdAt y updatedAt
+    timestamps: false
 });
+
 
 console.log("Modelo Viaje creado correctamente");
 
-// Experiencia.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
+//Experiencia.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
 console.log("Tabla Experiencia sincronizada correctamente");
 
 module.exports = Experiencia; //Exportamos el modelo
