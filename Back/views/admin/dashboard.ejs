@@ -31,7 +31,8 @@
         minute: "2-digit"
         }) %></p>
       <p><strong>Precio:</strong> $<%= vj.precio %></p>
-      <img src="<%= vj.imagen %>" alt="Imagen de <%= vj.origen %> a <%= vj.destino %>" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
+      <img src="http://localhost:3000/img/viajes/<%= vj.imagen %>" alt="Imagen de <%= vj.origen %> a <%= vj.destino %>" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
+
 
       <div class="acciones-item">
         <a href="/admin/viajes/modificar/<%= vj.id %>" class="button button-modificar">Modificar</a>
