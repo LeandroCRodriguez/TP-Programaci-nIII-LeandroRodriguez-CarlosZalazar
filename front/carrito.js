@@ -3,14 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const nombreUsuario = localStorage.getItem("nombreUsuario");
   const contenedor = document.getElementById("carrito-container");
   const totalElement = document.getElementById("total-carrito");
+  const btnConfirmar = document.getElementById("btn-confirmar");
+  
+  
   let total = 0;
 
   if (!carrito || carrito.length === 0) {
     contenedor.innerHTML = 
     `<p class='text-center'>${nombreUsuario}, El carrito está vacío.</p>`;
-    totalElement.textContent = "Total: $0";
+    totalElement.textContent = "Total: $0"; 
+    btnConfirmar.style.display = "none";
     return;
-  }  
+    }  
 
   carrito.forEach(producto => {
     const div = document.createElement("div");
