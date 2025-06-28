@@ -31,9 +31,11 @@ app.use('/experiencias', experienciaRouter);
 app.use('/admin', adminRouter);
 //Configurar carpeta public
 app.use(express.static(Path.join(__dirname, 'public')));
+app.use(express.static(Path.join(__dirname, '../front')));
 
-
-
+app.get('/', (req, res) => {
+    res.sendFile(Path.join(__dirname, '../front/index.html'));
+});
 
     
 app.listen(3000, () => {
