@@ -32,13 +32,23 @@ const Experiencia = sequelize.define("experiencias", {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    imagen: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    activo: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    }
+
+
 }, {
     timestamps: false // Evita la creación de las columnas createdAt y updatedAt
 });
 
 console.log("Modelo Viaje creado correctamente");
 
-// Experiencia.sync({force: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
+// Experiencia.sync({alter: true}) //Sincroniza el modelo con la base de datos, force: false no elimina la tabla si ya existe
 console.log("Tabla Experiencia sincronizada correctamente");
 
 module.exports = Experiencia; //Exportamos el modelo

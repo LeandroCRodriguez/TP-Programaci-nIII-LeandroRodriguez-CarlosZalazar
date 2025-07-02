@@ -12,6 +12,9 @@
   <% viajes.forEach(vj => { %>
     <div class="viaje">
       <h3>Viaje: <%= vj.id %></h3>
+      <% if (!vj.activo) { %>
+        <span class="badge-inactivo">Inactivo</span>
+      <% } %>
       <p><strong>Origen:</strong> <%= vj.origen %></p>
       <p><strong>Destino:</strong> <%= vj.destino %></p>
       <p><strong>Fecha de Salida:</strong> <%= new Date(vj.fechaSalida).toLocaleString("es-AR", {
@@ -34,6 +37,11 @@
       <img src="<%= vj.imagen %>" alt="Imagen de <%= vj.origen %> a <%= vj.destino %>" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
 
       <div class="acciones-item">
+        <% if (!vj.activo) { %>
+          <form action="/admin/viajes/restaurar/<%= vj.id %>" method="POST">
+              <button type="submit" class="button button-restaurar">Restaurar</button>
+          </form>
+        <% } %>
         <a href="/admin/viajes/modificar/<%= vj.id %>" class="button button-modificar">Modificar</a>
         <form action="/admin/viajes/eliminar/<%= vj.id %>" method="POST">
             <button type="submit" class="button button-eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este viaje?');">Eliminar</button>
@@ -51,6 +59,9 @@
   <% experiencias.forEach(exp => { %>
     <div class="experiencia">
       <h3>Experiencia: <%= exp.id %></h3>
+      <% if (!exp.activo) { %>
+        <span class="badge-inactivo">Inactivo</span>
+      <% } %>
       <p><strong>Nombre:</strong> <%= exp.experiencia %></p>
       <p><strong>Fecha:</strong> 
         <%= new Date(exp.fecha).toLocaleString("es-AR", {
@@ -65,11 +76,17 @@
       <p><strong>Calificación:</strong> <%= exp.calificacion %></p>
       <p><strong>Comentario:</strong> <%= exp.comentario %></p>
       <p><strong>Precio:</strong> $<%= exp.precio %></p>
+      <img src="<%= exp.imagen %>" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
       <div class="acciones-item">
           <a href="/admin/experiencias/modificar/<%= exp.id %>" class="button button-modificar">Modificar</a>
           <form action="/admin/experiencias/eliminar/<%= exp.id %>" method="POST">
               <button type="submit" class="button button-eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta experiencia?');">Eliminar</button>
           </form>
+            <% if (!exp.activo) { %>
+              <form action="/admin/experiencias/restaurar/<%= exp.id %>" method="POST">
+                  <button type="submit" class="button button-restaurar">Restaurar</button>
+              </form>
+            <% } %>
       </div>
     </div>
   <% }) %>

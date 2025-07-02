@@ -36,6 +36,10 @@ router.post('/experiencias/crear',validarExperiencia, experienciaController.crea
 
 router.post('/viajes/eliminar/:id', viajeController.eliminar);
 router.post('/experiencias/eliminar/:id', experienciaController.eliminar);
+router.post('/viajes/restaurar/:id', viajeController.restaurar);
+router.post('/experiencias/restaurar/:id', experienciaController.restaurar);
+
+
 
 //Rutas para modificar
 

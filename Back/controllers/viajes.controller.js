@@ -3,7 +3,8 @@ const viaje = require('../models/viajes'); //Importo el modelo de viajes
 class ViajeController
 {
     static async traerTodos(req, res) {
-        const viajes = await viaje.findAll(); 
+        const viajes = await viaje.findAll({where: { activo: true }}); 
+        
         res.send(viajes); 
     }
 
@@ -43,14 +44,15 @@ class ViajeController
         } catch (error) {
             res.status(400).send({ error: 'Error al modificar el viaje' }); 
         }
-    }       
+    }        
 
     static async eliminar(req, res) {
         const id = req.params.id; 
         try {
             const viajeEncontrado = await viaje.findByPk(id); 
             if (viajeEncontrado) {
-                await viajeEncontrado.destroy(); 
+                viajeEncontrado.activo = false;
+                await viajeEncontrado.save(); 
                 res.redirect('/admin/dashboard');  
             } else {
                 res.status(404).send({ error: 'Viaje no encontrado' }); 
@@ -58,7 +60,25 @@ class ViajeController
         } catch (error) {
             res.status(400).send({ error: 'Error al eliminar el viaje' }); 
         }
-    }   
+    }  
+    
+    
+    static async restaurar(req, res) {
+        const id = req.params.id;
+        try {
+            const viajeEncontrado = await viaje.findByPk(id);
+            if (viajeEncontrado) {
+            viajeEncontrado.activo = true;
+            await viajeEncontrado.save();
+            res.redirect('/admin/dashboard');
+            } else {
+            res.status(404).send({ error: 'Viaje no encontrado' });
+            }
+        } catch (error) {
+            res.status(400).send({ error: 'Error al restaurar el viaje' });
+        }
+    }
+
     
 }
 

@@ -1,9 +1,8 @@
 import { Viajes } from "./js/viajes-class.js";
-import { Experiences } from "./js/experience-class.js"; // Importa la clase Experiences
+import { Experiences } from "./js/experience-class.js"; 
 
 
-
-// Obtener nombre de usuario del localStorage
+//Si no hay un usuario logueado, te redirige al inicio. Si hay, muestra su nombre en pantalla.
 const nombreUsuario = localStorage.getItem("nombreUsuario");
 
 if (!nombreUsuario) {
@@ -12,7 +11,7 @@ if (!nombreUsuario) {
     document.getElementById("usuario-nombre").textContent = `Hola ${nombreUsuario}`;
 }
 
-// Configurar el botón de viajes
+// Cuando hacés clic en el botón "Viajes", lo elimina de la pantalla y llama a la función cargarViajes() para mostrar los productos.
 const btnViajes = document.getElementById("btnViajes");
 
 btnViajes.addEventListener("click", () => {
@@ -24,18 +23,22 @@ btnViajes.addEventListener("click", () => {
     cargarViajes();
 });
 
+
+// Igual que antes pero para experiencias
 const btnExperiencias = document.getElementById("btnExperiencias"); 
 
 btnExperiencias.addEventListener("click", () => {
     const btnViajesElement = document.getElementById("btnViajes"); // Nombre de variable distinto
 
     if (btnViajesElement) btnViajesElement.remove();
-    btnExperiencias.remove();
+    btnExperiencias.remove(); 
 
     cargarExperiencias(); 
 });
 
 
+
+// Muestra todos los viajes disponibles.
 async function cargarViajes() {
     const Title = document.getElementById("title-container");
     Title.textContent = "Viajes disponibles";
@@ -75,6 +78,7 @@ async function cargarViajes() {
     }
 }
 
+//Muestra todas las experiencas disponibles.
 async function cargarExperiencias() {
     const Title = document.getElementById("title-container");
     Title.textContent = "Experiencias disponibles";
@@ -97,7 +101,8 @@ async function cargarExperiencias() {
                 experiencia.fecha,      
                 experiencia.calificacion, 
                 experiencia.comentario, 
-                experiencia.precio     
+                experiencia.precio,  
+                experiencia.imagen   
             );
             console.log("Objeto Experiencia creado:", experienciaObj); 
 
@@ -113,20 +118,44 @@ async function cargarExperiencias() {
     }
 }
 
+
+// Detecta clicks en los botones para agregar o quitar del carrito. Llama a las funciones correspondientes.
 document.addEventListener("click", function (e) {
+
     if (e.target.classList.contains("btn-add-to-cart")) {
         const tipo = e.target.dataset.productType;
         const id = e.target.dataset.productId;
         const datos = JSON.parse(e.target.dataset.productData);
 
         addToCart(id, tipo, datos);
-        console.log("Producto agregado:", datos);
+        //mensaje producto agregado
+        const tarjeta = e.target.closest(".tarjeta-producto"); // ajustá esta clase a la que uses
+        if (tarjeta) {
+            const mensaje = document.createElement("p");
+            mensaje.textContent = "Producto agregado al carrito";
+            mensaje.className = "mensaje-temp text-success";
+            tarjeta.appendChild(mensaje);
+
+            setTimeout(() => mensaje.remove(), 1000); // lo borra luego de 1 segundo
+        }
+        
     }
      if (e.target.classList.contains('btn-remove-from-cart')) {
         const productId = e.target.dataset.productId;
         const type = e.target.dataset.productType;
 
         removeFromCart(productId, type);
+        //mensaje producto eliminado
+        const tarjeta = e.target.closest(".tarjeta-producto"); // ajustá esta clase a la que uses
+        if (tarjeta) {
+            const mensaje = document.createElement("p");
+            mensaje.textContent = "Producto eliminado del carrito";
+            mensaje.className = "mensaje-temp text-success";
+            tarjeta.appendChild(mensaje);
+
+            setTimeout(() => mensaje.remove(), 1000); 
+        }
+
     }
 });
 

@@ -3,7 +3,7 @@ const ExperienciaModel = require('../models/experiencias.js'); //Importamos el m
 class ExperienciaController 
 {
     static async traerTodos(req, res) {
-        const experiencias = await ExperienciaModel.findAll();    
+        const experiencias = await ExperienciaModel.findAll({where: { activo: true }});    
         res.send(experiencias); 
     }
 
@@ -20,9 +20,9 @@ class ExperienciaController
         }
 
     static async crear(req, res) {
-        const { experiencia, fecha, calificacion, comentario, precio } = req.body; //Obtenemos los datos de la experiencia del cuerpo de la petición
+        const { experiencia, fecha, calificacion, comentario, precio, imagen } = req.body; //Obtenemos los datos de la experiencia del cuerpo de la petición
         try {
-            const nuevaExperiencia = await ExperienciaModel.create({experiencia, fecha, calificacion, comentario, precio})
+            const nuevaExperiencia = await ExperienciaModel.create({experiencia, fecha, calificacion, comentario, precio, imagen })
             res.redirect('/admin/dashboard');
         } catch (error) {
             console.error('Error al crear la experiencia:', error);
@@ -31,11 +31,11 @@ class ExperienciaController
     }
     static async modificar(req, res) {
         const id = req.params.id; //Obtenemos el id de la experiencia
-        const { experiencia, fecha, calificacion, comentario, precio } = req.body; 
+        const { experiencia, fecha, calificacion, comentario, precio, imagen } = req.body; 
         try {
             const experienciaEncontrada = await ExperienciaModel.findByPk(id); 
             if (experienciaEncontrada) {
-                await experienciaEncontrada.update({ experiencia, fecha, calificacion, comentario, precio }); 
+                await experienciaEncontrada.update({ experiencia, fecha, calificacion, comentario, precio, imagen  }); 
                  res.redirect('/admin/dashboard'); 
             } else {
                 res.status(404).send({ error: 'Experiencia no encontrada' }); 
@@ -49,7 +49,8 @@ class ExperienciaController
         try {
             const experienciaEncontrada = await ExperienciaModel.findByPk(id);  
             if (experienciaEncontrada) {
-                await experienciaEncontrada.destroy(); 
+                experienciaEncontrada.activo = false;
+                await experienciaEncontrada.save();
                 res.redirect('/admin/dashboard'); 
             } else {
                 res.status(404).send({ error: 'Experiencia no encontrada' }); 
@@ -58,5 +59,22 @@ class ExperienciaController
             res.status(400).send({ error: 'Error al eliminar la experiencia' }); 
         }
     }
+
+    static async restaurar(req, res) {
+        const id = req.params.id;
+        try {
+            const experiencia = await ExperienciaModel.findByPk(id);
+            if (experiencia) {
+            experiencia.activo = true;
+            await experiencia.save();
+            res.redirect('/admin/dashboard');
+            } else {
+            res.status(404).send({ error: 'Experiencia no encontrada' });
+            }
+        } catch (error) {
+            res.status(400).send({ error: 'Error al restaurar la experiencia' });
+        }
+    }
+
 } 
 module.exports = ExperienciaController; 

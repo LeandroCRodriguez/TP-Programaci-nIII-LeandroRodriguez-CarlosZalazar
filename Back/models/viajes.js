@@ -35,7 +35,12 @@ const Viaje = sequelize.define("viajes", {
     precio: {
         type: DataTypes.FLOAT,
         allowNull: false,
-    }
+    },
+    activo: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+}
+
 }, {
     timestamps: false 
 });

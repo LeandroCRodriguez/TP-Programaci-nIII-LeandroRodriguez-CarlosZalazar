@@ -1,6 +1,6 @@
 function validarExperiencia(req, res, next) 
 {
-    const {experiencia, fecha, calificacion, comentario, precio} = req.body;
+    const {experiencia, fecha, calificacion, comentario, precio, imagen} = req.body;
     const errores = {};
 
     if(experiencia.length <= 3)

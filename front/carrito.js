@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("carrito-container");
   const totalElement = document.getElementById("total-carrito");
   const btnConfirmar = document.getElementById("btn-confirmar");
-  
-  
+  const btnVaciar = document.getElementById("btn-vaciar");
+    
   let total = 0;
 
   if (!carrito || carrito.length === 0) {
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `<p class='text-center'>${nombreUsuario}, El carrito está vacío.</p>`;
     totalElement.textContent = "Total: $0"; 
     btnConfirmar.style.display = "none";
+    btnVaciar.style.display = "none";
     return;
     }  
 
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (producto.tipo === "viaje") {
       div.innerHTML = `
-        <h4>${producto.origen} - ${producto.destino}</h4>
+        <h4>${producto.origen} - ${producto.destino}</h4> 
         <p>Precio: $${producto.precio}</p>
         <p>Cantidad: ${producto.cantidad}</p>
         <p>Subtotal: $${producto.precio * producto.cantidad}</p>
@@ -50,11 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
   `${nombreUsuario}, tu Total es: $${total}`;
   
   contenedor.addEventListener("click", (e) => {
+
     if(e.target.classList.contains("btn-agregar"))
     {
       const id = e.target.dataset.id;
       const tipo = e.target.dataset.tipo;
       modificarCantidad(id, tipo, 1);
+      mensaje.textContent = `Producto agregado al carrito.`;
+      contenedor.appendChild(mensaje);
     }
 
     if(e.target.classList.contains("btn-quitar"))
@@ -64,6 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
       modificarCantidad(id, tipo, -1);
     }  
   });
+
+    if (btnVaciar) {
+      btnVaciar.addEventListener("click", () => {
+        localStorage.removeItem("carrito");
+        location.reload();
+      });
+    }
+
 });
 
 function modificarCantidad(id, tipo, cantidad) {
