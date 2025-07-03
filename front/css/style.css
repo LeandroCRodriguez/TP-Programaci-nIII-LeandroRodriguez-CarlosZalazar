@@ -222,3 +222,15 @@ label {
     margin: 20px;
 }
 
+
+#anterior, #siguiente {
+    background-color: #0c2252;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+

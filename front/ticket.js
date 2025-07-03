@@ -47,4 +47,19 @@
   btnFinalizar.addEventListener("click", () => {
     localStorage.removeItem("carrito");
   });
+
+//ticket para descargar
+document.getElementById("btn-descargar-ticket").addEventListener("click", () => {
+  const carrito = JSON.parse(localStorage.getItem("carrito"));
+  const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+  const carritoEncoded = encodeURIComponent(JSON.stringify(carrito));
+  const nombreEncoded = encodeURIComponent(nombreUsuario);
+
+  const url = `http://localhost:3000/descarga/ticket?carrito=${carritoEncoded}&nombre=${nombreEncoded}`;
+  window.open(url, "_blank");
+});
+
+
+
 });
