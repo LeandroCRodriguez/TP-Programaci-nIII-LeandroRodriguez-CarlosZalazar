@@ -20,7 +20,7 @@ router.get('/viajes/crear', (req, res) => {
 const validarViaje = require('../middlewares/validarViaje'); 
 
 // Procesa el formulario de creación de viajes
-router.post('/viajes/crear',validarViaje, viajeController.crear); // Usa el método crear del controlador de viajes
+router.post("/viajes/crear",upload.single("imagen"), validarViaje, viajeController.crear); // Usa el método crear del controlador de viajes con multer
 
 // Muestra el formulario para crear una nueva experiencia
 router.get('/experiencias/crear', (req, res) => {
@@ -78,7 +78,8 @@ router.get("/experiencias/modificar/:id", async (req, res) => {
     }
 });
 
-router.post('/viajes/modificar/:id', validarViaje, viajeController.modificar);
+router.post("/viajes/modificar/:id",upload.single("imagen"), validarViaje, viajeController.modificar); 
+
 router.post(
   '/experiencias/modificar/:id',
   upload.single("imagen"),          // Middleware de subida de imagen

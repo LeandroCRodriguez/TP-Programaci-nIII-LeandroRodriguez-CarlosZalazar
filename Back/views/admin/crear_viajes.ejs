@@ -9,7 +9,7 @@
 <body>
      <%- include('../HeaderYFooterGeneral/header') %>
     <h1>Crear viaje</h1>
-    <form action="/admin/viajes/crear" method="POST">
+    <form action="/admin/viajes/crear" method="POST" enctype="multipart/form-data">
         <label for="origen">Origen:</label><br>
         <input type="text" id="origen" name ="origen" required />
         <% if (errores?.origen) { %>
@@ -34,9 +34,10 @@
         <p class="error"><%= errores.precio %></p>
         <% } %>
 
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required />
+ 
 
-        <label for="imagen">URL/Nombre de Imagen:</label><br>
-        <input type="text" id="imagen" name="imagen" required /><br> 
 
         <button type="submit" class="button">Crear Viaje</button>
         <a href="/admin/dashboard" class="button cancel-button">Cancelar</a>

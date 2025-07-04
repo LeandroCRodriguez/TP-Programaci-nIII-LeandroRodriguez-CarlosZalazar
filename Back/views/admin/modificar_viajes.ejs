@@ -22,7 +22,7 @@
 
 
     <h1>Modificar viaje</h1>
-    <form action="/admin/viajes/modificar/<%= viaje.id %>" method="POST">
+    <form action="/admin/viajes/modificar/<%= viaje.id %>" method="POST" enctype="multipart/form-data">
         <label for="origen">Origen:</label><br>
         <input type="text" id="origen" name ="origen" value="<%= viaje.origen %>" required /> 
 
@@ -39,9 +39,9 @@
         <label for="precio">Precio:</label><br>
         <input type="number" id="precio" name="precio" min="0" value="<%= viaje.precio %>" required /> 
 
-        <label for="imagen">URL/Nombre de Imagen:</label><br>
-        <input type="text" id="imagen" name="imagen" value="<%= viaje.imagen %>" required /><br>
-
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required />
+        
         <button type="submit" class="button">Modificar Viaje</button>
         <a href="/admin/dashboard" class="button cancel-button">Cancelar</a>
     </form>

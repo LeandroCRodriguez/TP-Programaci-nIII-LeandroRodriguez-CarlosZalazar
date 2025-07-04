@@ -13,7 +13,7 @@ class ViajeController
         try {
             const viajeEncontrado = await viaje.findByPk(id);
             return viajeEncontrado; 
-        } catch (error) {
+        } catch (error) { 
             console.error("Error al obtener viaje para formulario:", error);
             return null;
         }
@@ -21,7 +21,11 @@ class ViajeController
 
 
     static async crear(req, res) {
-        const { origen, destino, fechaSalida, fechaLlegada, precio, imagen } = req.body; //Obtengo los datos del viaje del cuerpo de la petición
+        const { origen, destino, fechaSalida, fechaLlegada, precio} = req.body; //Obtengo los datos del viaje del cuerpo de la petición
+        let imagen = null; 
+        if (req.file) {
+            imagen = "/img/" + req.file.filename; // Ruta donde se guardó la imagen
+        }   
         try {
             const nuevoViaje = await viaje.create({ origen, destino, fechaSalida, fechaLlegada, precio, imagen }); 
             res.redirect('/admin/dashboard');
@@ -32,7 +36,11 @@ class ViajeController
 
     static async modificar(req, res) { 
         const id = req.params.id; 
-        const { origen, destino, fechaSalida, fechaLlegada, precio, imagen } = req.body; 
+        const { origen, destino, fechaSalida, fechaLlegada, precio} = req.body; 
+        let imagen = null; 
+        if (req.file) {
+            imagen = "/img/" + req.file.filename; // Ruta donde se guardó la imagen
+        }  
         try {
             const viajeEncontrado = await viaje.findByPk(id); 
             if (viajeEncontrado) {
