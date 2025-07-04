@@ -3,6 +3,7 @@ const router = express.Router();
 const AdminController = require('../controllers/admin.controller'); 
 const viajeController = require('../controllers/viajes.controller'); 
 const experienciaController = require('../controllers/experiencias.controller'); 
+const upload = require("../middlewares/upload"); 
 
 router.get('/dashboard', AdminController.mostrarDashboard);
 router.get('/login', AdminController.mostrarLogin);
@@ -29,8 +30,14 @@ router.get('/experiencias/crear', (req, res) => {
 
 //Middleware para crear experiencia
 const validarExperiencia = require("../middlewares/validarExperiencia");  
-// Procesa el formulario de creación de experiencias
-router.post('/experiencias/crear',validarExperiencia, experienciaController.crear); // Usa el método crear del controlador de experiencias
+
+router.post(
+  '/experiencias/crear',
+  upload.single("imagen"),          // Middleware de subida de imagen
+  validarExperiencia,               // Middleware de validación
+  experienciaController.crear       // Controlador
+);
+
 
 //Rutas para eliminar
 
@@ -72,7 +79,11 @@ router.get("/experiencias/modificar/:id", async (req, res) => {
 });
 
 router.post('/viajes/modificar/:id', validarViaje, viajeController.modificar);
-router.post('/experiencias/modificar/:id',validarExperiencia, experienciaController.modificar); 
-
+router.post(
+  '/experiencias/modificar/:id',
+  upload.single("imagen"),          // Middleware de subida de imagen
+  validarExperiencia,               // Middleware de validación
+  experienciaController.modificar       // Controlador
+);
 module.exports = router; 
 

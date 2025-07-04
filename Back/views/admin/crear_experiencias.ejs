@@ -9,7 +9,7 @@
 <body>
     <%- include('../HeaderYFooterGeneral/header') %>       
     <h1>Crear Experiencia</h1>
-    <form action="/admin/experiencias/crear" method="POST">
+    <form action="/admin/experiencias/crear" method="POST" enctype="multipart/form-data">
         <label for="experiencia">Experiencia:</label><br>
         <input type="text" id="experiencia" name ="experiencia" required/>
         <% if (errores?.experiencia) { %>
@@ -34,9 +34,10 @@
         <% if (errores?.precio) { %>
         <p class="error"><%= errores.precio %></p>
         <% } %>
+ 
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required />
 
-        <label>URL de Imagen</label>
-        <input type="text" name="imagen" class="form-control" />    
 
 
         <button type="submit" class="button">Crear Experiencia</button>

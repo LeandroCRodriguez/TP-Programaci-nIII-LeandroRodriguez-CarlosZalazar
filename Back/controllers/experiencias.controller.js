@@ -20,9 +20,20 @@ class ExperienciaController
         }
 
     static async crear(req, res) {
-        const { experiencia, fecha, calificacion, comentario, precio, imagen } = req.body; //Obtenemos los datos de la experiencia del cuerpo de la petición
+        const { experiencia, fecha, calificacion, comentario, precio } = req.body; //Obtenemos los datos de la experiencia del cuerpo de la petición
+        let imagen = null;
+        if (req.file) {
+        imagen = "/img/" + req.file.filename; // Ruta donde se guardó la imagen
+        }
         try {
-            const nuevaExperiencia = await ExperienciaModel.create({experiencia, fecha, calificacion, comentario, precio, imagen })
+            const nuevaExperiencia = await ExperienciaModel.create({
+                experiencia, 
+                fecha, 
+                calificacion, 
+                comentario, 
+                precio, 
+                imagen 
+            })
             res.redirect('/admin/dashboard');
         } catch (error) {
             console.error('Error al crear la experiencia:', error);
@@ -31,7 +42,11 @@ class ExperienciaController
     }
     static async modificar(req, res) {
         const id = req.params.id; //Obtenemos el id de la experiencia
-        const { experiencia, fecha, calificacion, comentario, precio, imagen } = req.body; 
+        const { experiencia, fecha, calificacion, comentario, precio} = req.body; 
+        let imagen = null;
+        if (req.file) {
+        imagen = "/img/" + req.file.filename; // Ruta donde se guardó la imagen
+        }
         try {
             const experienciaEncontrada = await ExperienciaModel.findByPk(id); 
             if (experienciaEncontrada) {
